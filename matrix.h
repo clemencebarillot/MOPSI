@@ -25,12 +25,16 @@ public:
     ~Matrix(){delete [] tab;}
     void get_dim(int& a,int& b){a=n;b=p;}
     int get(int i, int j);
+     vector<int> get_vector(int j);
+    vector<int> get_vector_max();
+
     void set(int i, int j, int x);
     void set_vector(int j,vector<int> X);
-    vector<int> get_vector(int j);
-    void display();
     vector<int> swap(int i);
-    vector<int> get_vector_max();
+
+    void display();
+
+
 };
 
 
