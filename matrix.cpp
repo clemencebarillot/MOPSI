@@ -48,11 +48,12 @@ vector<int> Matrix::get_vector_max(){
     int i=0;
     int max=tab[0];
     for(int k=0;k<p;k++){
-        if(max<tab[k]){
-            max=tab[k];
+        if(max<tab[n*k]){
+            max=tab[n*k];
             i=k;
         }
     }
     return get_vector(i);
 }
+
 
