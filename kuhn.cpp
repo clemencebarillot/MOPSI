@@ -1,6 +1,15 @@
 #include "kuhn.h"
 
 
+
+//int findLabel(Matrix Label;map)
+
+
+//bool isFullyLabelled;
+
+//int findLabel(Matrix, fonction labbel, tableau des labels (memoisation))
+
+//Matrix increaseDim(Matrix currentSimplex, ???); //deja fait
 Matrix increase_dim(Matrix M){
     vector<int> max=M.get_vector_max();
     int n,p;
@@ -20,16 +29,7 @@ Matrix increase_dim(Matrix M){
     return(Mp);
 }
 
-//int findLabel(Matrix Label;map)
-
-
-//bool isFullyLabelled;
-
-//int findLabel(Matrix, fonction labbel, tableau des labels (memoisation))
-
-//Matrix increaseDim(Matrix currentSimplex, ???); //deja fait
-
-//bool sideReached(??); //renvoie true si on a atteint le bord du simplexe et qu'on doit descendre d'une dim
+//bool sideReached(Matrix simplex) //renvoie true si on a atteint le bord du simplexe et qu'on doit descendre d'une dim
 //Vérifier si dans la nouvelle colonne s'il n'y a pas de -1.
 bool sideReached(Matrix simplex){
     bool test = false;
@@ -43,11 +43,11 @@ bool sideReached(Matrix simplex){
     return test;
 }
 
-//Matrix decreaseDim(Matrix& currentSimplex, ???);
+//Matrix decreaseDim(Matrix currentSimplex)
 //Si on a un nombre négatif on supprime cette colonne
 //La ligne a sup est celle ou il n'y a que des 0 (après avoir sup la colonne)
 
-Matrix decreaseDim(Matrix& simplex){
+Matrix decreaseDim(Matrix simplex){
     int n, p, j0;
     j0 = simplex.last_modified;
     simplex.get_dim(n,p);
@@ -88,10 +88,13 @@ Matrix decreaseDim(Matrix& simplex){
     return(Mp);
 }
 
-//void next_step(Matrix& currentSimplex, ???); // modifie la matrice en argument
+//void next_step(Matrix& currentSimplex); // modifie la matrice en argument
 //choisir la colonne à modifier : la première (et d'ailleurs l'unique) colonne avec le label égal au label de la nouvelle colonne formée. S'il n'y en a pas, on est en fullyLabelled()
 
-//Matrix EF2() qui renvoie la matrice ef2, on verra après quel partage on prend.
+//Matrix EF2(????) qui renvoie la matrice ef2, on verra après quel partage on prend.
+Matrix EF2(){
+
+}
 
 
 //??? EF2(int nPlayers,??? ); la fonction finale qui renvoie le partage EF2
