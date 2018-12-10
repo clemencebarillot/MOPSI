@@ -14,6 +14,7 @@ Matrix increase_dim(Matrix M){
     vector<int> max=M.get_vector_max();
     int n,p;
     M.get_dim(n,p);
+
     Matrix Mp(n+1,p+1);
     max[0]--; max[n]++;
     for(int i=0;i<n+1;i++)
@@ -29,6 +30,7 @@ Matrix increase_dim(Matrix M){
     return(Mp);
 }
 
+<<<<<<< HEAD
 //bool sideReached(Matrix simplex) //renvoie true si on a atteint le bord du simplexe et qu'on doit descendre d'une dim
 //Vérifier si dans la nouvelle colonne s'il n'y a pas de -1.
 bool sideReached(Matrix simplex){
@@ -42,6 +44,47 @@ bool sideReached(Matrix simplex){
     }
     return test;
 }
+=======
+
+vector<int> findLabel(Matrix M, map<int,int> value_function){
+    int n,p;
+    M.get_dim(n,p);
+    Matrix memory(n,p);
+    for(int part=0;part<n;part++){
+        vector<int> column=M.get_vector(part);
+        vector<int> values;
+        int temp=0;
+        int value=0;
+        int start=0;
+        for(int i=0;i<column.size();i++){
+            temp=column.at(i); //Le nombre de perles
+            value=0;
+            for(int j=0;j<temp;j++)
+                value+=value_function[start+j]; //Le start pour prendre en compte le nombre de perles d'avant
+            start+=temp;
+            values.push_back(value);
+        }
+        memory.set_vector(part,values);
+    }
+    memory.display();
+    vector<int> Label;
+    for(int i=0;i<p;i++){
+        int k=0;
+        int max=memory.get(0,i);
+        for(int j=0;j<n;j++)
+            if(memory.get(j,i)>max){
+                k=j;
+                max=memory.get(j,i);
+            }
+        cout<<k<<" " ;
+        Label.push_back(k);
+    }
+    cout<<endl;
+    return Label;
+}
+
+
+>>>>>>> d97c0b5e8ec1144788302a97496b731a8cdc71fc
 
 //Matrix decreaseDim(Matrix currentSimplex)
 //Si on a un nombre négatif on supprime cette colonne
