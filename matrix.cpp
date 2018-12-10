@@ -13,13 +13,13 @@ void Matrix::display(){
 int Matrix::get(int i,int j){
     i=i%n;
     j=j%p;
-    return tab[i+n*j];
+    return tab[i+p*j];
 }
 
 void Matrix::set(int i, int j, int x){
     i=i%n;
     j=j%p;
-    tab[i+n*j]=x;
+    tab[i+p*j]=x;
 }
 
 void Matrix::set_vector(int j, vector<int> X){
@@ -48,8 +48,8 @@ vector<int> Matrix::get_vector_max(){
     int i=0;
     int max=tab[0];
     for(int k=0;k<p;k++){
-        if(max<tab[k]){
-            max=tab[k];
+        if(max<tab[p*k]){
+            max=tab[p*k];
             i=k;
         }
     }

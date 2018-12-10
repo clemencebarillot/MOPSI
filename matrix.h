@@ -17,6 +17,7 @@ protected:
     int* tab;
 public:
     int last_modified;
+    bool isFullyLabelled;
     Matrix(int n_,int p_){n=n_;p=p_;tab=new int[n*p];last_modified=p_-1;}
     Matrix(int n_,int p_,int* tab_){p=p_;n=n_;tab=new int[n_*p_];
                                     for(int i=0;i<n_*p_;i++)
