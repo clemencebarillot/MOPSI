@@ -30,7 +30,6 @@ Matrix increase_dim(Matrix M){
     return(Mp);
 }
 
-<<<<<<< HEAD
 //bool sideReached(Matrix simplex) //renvoie true si on a atteint le bord du simplexe et qu'on doit descendre d'une dim
 //Vérifier si dans la nouvelle colonne s'il n'y a pas de -1.
 bool sideReached(Matrix simplex){
@@ -44,7 +43,6 @@ bool sideReached(Matrix simplex){
     }
     return test;
 }
-=======
 
 vector<int> findLabel(Matrix M, map<int,int> value_function){
     int n,p;
@@ -84,7 +82,6 @@ vector<int> findLabel(Matrix M, map<int,int> value_function){
 }
 
 
->>>>>>> d97c0b5e8ec1144788302a97496b731a8cdc71fc
 
 //Matrix decreaseDim(Matrix currentSimplex)
 //Si on a un nombre négatif on supprime cette colonne
