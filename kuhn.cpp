@@ -43,14 +43,12 @@ void next(Matrix& M,int i){
 
 //int findLabel(Matrix, fonction labbel, tableau des labels (memoisation))
 
-//Matrix increaseDim(Matrix currentSimplex, ???); //deja fait
 Matrix increase_dim(Matrix M){
-    vector<int> max=M.get_vector_max();
     int n,p;
     M.get_dim(n,p);
-
+    vector<int> max=M.get_vector(n-1); //On choisit toujours la dernière colonne
     Matrix Mp(n+1,p+1);
-    max[0]--; max[n]++;
+    max[0]--; max[n]=1;
     for(int i=0;i<n+1;i++)
         for(int j=0;j<p+1;j++){
             if(j==p)
@@ -63,6 +61,7 @@ Matrix increase_dim(Matrix M){
     Mp.last_modified=p;
     return(Mp);
 }
+
 
 //bool sideReached(Matrix simplex) //renvoie true si on a atteint le bord du simplexe et qu'on doit descendre d'une dim
 //Vérifier si dans la nouvelle colonne s'il n'y a pas de -1.
