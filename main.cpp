@@ -13,6 +13,7 @@ int main()
     S.display();
     Matrix D=increase_dim(S);
     D.display();
+    next(D,2);
+    D.display();
     return 0;
 }
-
