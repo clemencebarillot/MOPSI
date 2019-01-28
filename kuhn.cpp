@@ -125,6 +125,7 @@ vector<int> findLabel(Matrix M, map<int,int> value_function){
 //La ligne a sup est celle ou il n'y a que des 0 (après avoir sup la colonne)
 
 Matrix decreaseDim(Matrix simplex){
+    cout<<"decreaseDim appelé"<<endl;
     int n, p, j0;
     j0 = simplex.last_modified;
     simplex.get_dim(n,p);
@@ -151,15 +152,26 @@ Matrix decreaseDim(Matrix simplex){
     //creation de la nouvelle matrice
     int delta_n = 0, delta_p = 0; // pour quand on aura sauté la colonne last_modified
 
+<<<<<<< HEAD
     for(int i=0; i<n-1; i++){
         for(int j=0; j<p-1; j++){
             if(j >= j0)
+=======
+    for(int i=0; i<n; i++){ //il faudrait pas mettre n-1 et p-1?
+        for(int j=0; j<p; j++){
+            if(j==j0)
+>>>>>>> 0c3db65bf343c3322e5dd9a74fa944bda455df85
                 delta_p = 1;
             else delta_p = 0;
             if( i >= i0)
                 delta_n = 1;
+<<<<<<< HEAD
             else delta_n = 0;
             Mp.set(i,j,simplex.get(i+delta_n, j+delta_p));
+=======
+            Mp.set(i,j,simplex.get(i+delta_n, j+delta_p));
+            cout<<i+delta_n<<endl;
+>>>>>>> 0c3db65bf343c3322e5dd9a74fa944bda455df85
 
         }
     }
