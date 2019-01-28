@@ -166,9 +166,7 @@ Matrix decreaseDim(Matrix simplex){
 //choisir la colonne à modifier : la première (et d'ailleurs l'unique) colonne avec le label égal au label de la nouvelle colonne formée. S'il n'y en a pas, on est en fullyLabelled()
 
 //Matrix EF2(????) qui renvoie la matrice ef2, on verra après quel partage on prend.
-Matrix EF2(){
-
-}
+//Matrix EF2(){   }
 
 
 //??? EF2(int nPlayers,??? ); la fonction finale qui renvoie le partage EF2
