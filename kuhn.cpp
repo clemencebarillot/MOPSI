@@ -63,6 +63,8 @@ Matrix increase_dim(Matrix M){
                 Mp.set(i,j,M.get(i,j));
         }
     Mp.last_modified=p;
+    Mp.last_labels=vector<int>(M.last_labels);
+    Mp.last_labels.push_back(p);
     return(Mp);
 }
 
@@ -168,7 +170,9 @@ Matrix decreaseDim(Matrix simplex){
 
         }
     }
-    //Mp.last_modified = ??; // ON MET QUELLE VALEUR DU COUP ICI?
+    Mp.last_modified = simplex.last_labels[simplex.last_labels.size()-1];
+    simplex.last_labels.pop_back();
+    Mp.last_labels = vector<int>(simplex.last_labels);
     return(Mp);
 }
 
