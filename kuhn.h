@@ -1,6 +1,7 @@
 #ifndef KUHN_H
 #define KUHN_H
 
+#include <map>
 #include "matrix.h"
 
 void left(Matrix &M);
