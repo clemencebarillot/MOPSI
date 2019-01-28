@@ -2,6 +2,40 @@
 
 
 
+void left(Matrix& M){
+    //Ici on veut modifier la matrice pour supprimer la première colonne, tout décaller et remettre la nouvelle tout à droite.
+    int n,p;
+    M.get_dim(n,p);
+    vector<int> X=M.get_vector(0);
+    for(int i=1;i<n;i++)
+        M.set_vector(i-1,M.get_vector(i));
+    M.set_vector(n-1,X);
+}
+
+void right(Matrix& M){
+    //Ici on veut modifier la matrice pour supprimer la dernière colonne, tout décaller et remettre la nouvelle tout à gauche.
+    int n,p;
+    M.get_dim(n,p);
+    vector<int> X=M.get_vector(n-1);
+    for(int i=n-1;i>0;i--)
+        M.set_vector(i,M.get_vector(i-1));
+    M.set_vector(0,X);
+}
+
+void next(Matrix& M,int i){
+    int n,p;
+    M.get_dim(n,p);
+    vector<int> X(n);
+    for(int k=0;k<n;k++)
+        X[k]=M.get_vector(i-1)[k]+M.get_vector(i+1)[k]-M.get_vector(i)[k];
+    M.set_vector(i,X);
+    M.display();
+    if(i==0)
+        left(M);
+    if(i==n-1)
+        right(M);
+}
+
 //int findLabel(Matrix Label;map)
 
 
