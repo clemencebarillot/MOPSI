@@ -30,10 +30,14 @@ void next(Matrix& M,int i){
         X[k]=M.get_vector(i-1)[k]+M.get_vector(i+1)[k]-M.get_vector(i)[k];
     M.set_vector(i,X);
     M.display();
-    if(i==0)
+    if(i==0){
         left(M);
-    if(i==n-1)
+        M.last_modified=p;
+    }
+    if(i==n-1){
         right(M);
+        M.last_modified=0;
+    }
 }
 
 //int findLabel(Matrix Label;map)
@@ -126,7 +130,7 @@ Matrix decreaseDim(Matrix simplex){
     simplex.get_dim(n,p);
     // on va supprimer la derniere ajoutée fatalement non?
     Matrix Mp(n-1,p-1);
-
+    cout<< j0 <<endl;
     for(int i=0; i<n; i++){ // on balaie la colonne a supprimer qu'on remplace par des 0 --> suppression vitruelle de la colonne
         simplex.set(i,j0,0);
     }
@@ -147,13 +151,15 @@ Matrix decreaseDim(Matrix simplex){
     //creation de la nouvelle matrice
     int delta_n = 0, delta_p = 0; // pour quand on aura sauté la colonne last_modified
 
-    for(int i=0; i<n; i++){
-        for(int j=0; j<p; j++){
-            if(j==j0)
+    for(int i=0; i<n-1; i++){
+        for(int j=0; j<p-1; j++){
+            if(j >= j0)
                 delta_p = 1;
-            if( i == i0)
+            else delta_p = 0;
+            if( i >= i0)
                 delta_n = 1;
-            Mp.set(i,j,simplex.get(i+i0, j+j0));
+            else delta_n = 0;
+            Mp.set(i,j,simplex.get(i+delta_n, j+delta_p));
 
         }
     }
