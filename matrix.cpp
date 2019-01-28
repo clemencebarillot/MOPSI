@@ -43,22 +43,3 @@ vector<int> Matrix::swap(int i){
         X[k]=get_vector(i-1)[k]+get_vector(i+1)[k]-get_vector(i)[k];
     return X;
 }
-
-vector<int> Matrix::get_vector_max(){
-    int i=0;
-    int max=tab[0];
-    for(int k=0;k<p;k++){
-<<<<<<< HEAD
-        if(max<tab[n*k]){
-            max=tab[n*k];
-=======
-        if(max<tab[p*k]){
-            max=tab[p*k];
->>>>>>> d97c0b5e8ec1144788302a97496b731a8cdc71fc
-            i=k;
-        }
-    }
-    return get_vector(i);
-}
-
-

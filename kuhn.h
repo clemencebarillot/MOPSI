@@ -4,9 +4,7 @@
 #include "matrix.h"
 
 void left(Matrix &M);
-
 void right(Matrix& M);
-
 void next(Matrix &M, int i);
 
 Matrix increase_dim(Matrix M);
