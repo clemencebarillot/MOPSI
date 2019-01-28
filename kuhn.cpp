@@ -158,7 +158,7 @@ Matrix decreaseDim(Matrix simplex){
 
         }
     }
-    Mp.last_modified = ??; // ON MET QUELLE VALEUR DU COUP ICI?
+    //Mp.last_modified = ??; // ON MET QUELLE VALEUR DU COUP ICI?
     return(Mp);
 }
 
