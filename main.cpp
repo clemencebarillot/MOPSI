@@ -18,4 +18,5 @@ int main()
     Matrix F=decreaseDim(D);
     F.display();
     return 0;
+    
 }
