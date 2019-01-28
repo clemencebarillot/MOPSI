@@ -82,6 +82,12 @@ bool sideReached(Matrix simplex){
 }
 
 vector<int> findLabel(Matrix M, map<int,int> value_function){
+    /*
+     Actuellement tous les joueurs ont la même fonction de labeling, donc au lieu d'avoir un vecteur de taille n, on a un vecteur de taille 1
+     associé au label du découpage
+     Le nombre correspond à la part préférée dans ce découpage
+     (on peut faire le lien avec le fait que l'on veut des découpages où la part préférée est différente sur chaque angle du mini simplexe)
+    */
     int n,p;
     M.get_dim(n,p);
     Matrix memory(n,p);
@@ -125,13 +131,11 @@ vector<int> findLabel(Matrix M, map<int,int> value_function){
 //La ligne a sup est celle ou il n'y a que des 0 (après avoir sup la colonne)
 
 Matrix decreaseDim(Matrix simplex){
-    cout<<"decreaseDim appelé"<<endl;
     int n, p, j0;
     j0 = simplex.last_modified;
     simplex.get_dim(n,p);
     // on va supprimer la derniere ajoutée fatalement non?
     Matrix Mp(n-1,p-1);
-    cout<< j0 <<endl;
     for(int i=0; i<n; i++){ // on balaie la colonne a supprimer qu'on remplace par des 0 --> suppression vitruelle de la colonne
         simplex.set(i,j0,0);
     }
@@ -178,3 +182,8 @@ Matrix decreaseDim(Matrix simplex){
 //??? EF2(int nPlayers,??? ); la fonction finale qui renvoie le partage EF2
 ////il faut créer une methode display pour les matrices; une methode label(colonne)
 ////a voir si on ne doit pas prendre en argument les labels aussi, et voir comment on garde en memoire le dernier pont ajouté
+
+
+/*Point du 28/01
+pour appliquer le next : trouver la colonne last modified et touver la nouvelle colonne qui va etre la last modified : c'est la première et la seule qui a le meme label que l'ancienne
+*/

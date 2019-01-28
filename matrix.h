@@ -32,6 +32,7 @@ public:
     void set(int i, int j, int x);
     void set_vector(int j,vector<int> X);
     vector<int> swap(int i);
+    vector<int> last_labels; //Ce vecteur garde en mémoire les vecteurs de la colonne qui était le last_modified avant d'augmenter de dimension
 
     void display();
 
