@@ -23,11 +23,13 @@ int main()
     while(mod != 3){
         cout<<"//==========="<<endl;
         cout<<"debut boucle"<<endl;
+        D.display();
         next(D,mod);
         D.display();
         vector<int> labels=findLabel(D,value_function);
         mod=findNext(D,labels);
         cout<<mod<<endl;
+        D.display();
         cout<<"fin"<<endl;
         cout<<"//==========="<<endl;
     }

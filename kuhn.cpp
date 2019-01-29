@@ -32,7 +32,7 @@ void next(Matrix& M,int i){
     M.last_modified=i;
     if(i==0){
         left(M);
-        M.last_modified=p;
+        M.last_modified=p-1;
     }
     if(i==n-1){
         right(M);
@@ -127,7 +127,7 @@ vector<int> findLabel(Matrix& M, map<int,int> value_function){
     return Label;
 }
 
-int findNext(Matrix M,vector<int> labels){
+int findNext(Matrix& M,vector<int> labels){
     int label=labels[M.last_modified];
     int n,p;
     M.get_dim(n,p);

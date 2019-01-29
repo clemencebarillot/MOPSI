@@ -16,7 +16,7 @@ void next(Matrix& M,int i);
 
 vector<int> findLabel(Matrix &Label, map<int,int> value_function);
 
-int findNext(Matrix M, vector<int> labels);
+int findNext(Matrix &M, vector<int> labels);
 
 
 #endif // KUHN_H
