@@ -29,7 +29,7 @@ void next(Matrix& M,int i){
     for(int k=0;k<n;k++)
         X[k]=M.get_vector(i-1)[k]+M.get_vector(i+1)[k]-M.get_vector(i)[k];
     M.set_vector(i,X);
-    M.display();
+    M.last_modified=i;
     if(i==0){
         left(M);
         M.last_modified=p;
@@ -83,7 +83,7 @@ bool sideReached(Matrix simplex){
     return test;
 }
 
-vector<int> findLabel(Matrix M, map<int,int> value_function){
+vector<int> findLabel(Matrix& M, map<int,int> value_function){
     /*
      Actuellement tous les joueurs ont la même fonction de labeling, donc au lieu d'avoir un vecteur de taille n, on a un vecteur de taille 1
      associé au label du découpage
@@ -123,10 +123,19 @@ vector<int> findLabel(Matrix M, map<int,int> value_function){
         Label.push_back(k);
     }
     cout<<endl;
+    cout<<endl;
     return Label;
 }
 
-
+int findNext(Matrix M,vector<int> labels){
+    int label=labels[M.last_modified];
+    int n,p;
+    M.get_dim(n,p);
+    for(int i=0;i<p;i++)
+        if(i!=M.last_modified && label==labels[i])
+            return i;
+    return p; //On est en fully labelled
+}
 
 //Matrix decreaseDim(Matrix currentSimplex)
 //Si on a un nombre négatif on supprime cette colonne
