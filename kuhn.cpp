@@ -30,11 +30,13 @@ void next(Matrix& M,int i){
         X[k]=M.get_vector(i-1)[k]+M.get_vector(i+1)[k]-M.get_vector(i)[k];
     M.set_vector(i,X);
     M.last_modified=i;
-    if(i==0){
+    if(i==0 && 1==1){
+        cout<<"i="<<i<<endl;
         left(M);
         M.last_modified=p-1;
     }
-    if(i==n-1){
+    else if(i==p-1 && 1==1){ //Faire attention quand on commencera dans la dimension 1 (avec le else)
+        cout<<"i="<<i<<endl;
         right(M);
         M.last_modified=0;
     }
@@ -50,7 +52,7 @@ void next(Matrix& M,int i){
 Matrix increase_dim(Matrix M){
     int n,p;
     M.get_dim(n,p);
-    vector<int> max=M.get_vector(n-1); //On choisit toujours la dernière colonne
+    vector<int> max=M.get_vector(0); //On choisit toujours la dernière colonne
     Matrix Mp(n+1,p+1);
     max[0]--; max[n]=1;
     for(int i=0;i<n+1;i++)
@@ -90,6 +92,7 @@ vector<int> findLabel(Matrix& M, map<int,int> value_function){
      Le nombre correspond à la part préférée dans ce découpage
      (on peut faire le lien avec le fait que l'on veut des découpages où la part préférée est différente sur chaque angle du mini simplexe)
     */
+    cout<<"//=======Label"<<endl;
     int n,p;
     M.get_dim(n,p);
     Matrix memory(n,p);
@@ -124,6 +127,7 @@ vector<int> findLabel(Matrix& M, map<int,int> value_function){
     }
     cout<<endl;
     cout<<endl;
+    cout<<"//=======End Label"<<endl;
     return Label;
 }
 

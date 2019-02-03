@@ -13,29 +13,34 @@ void Matrix::display(){
 int Matrix::get(int i,int j){
     i=i%n;
     j=j%p;
+    if(j<0)
+        j+=p;
+    if(i<0)
+        i+=n;
     return tab[i+p*j];
 }
 
 void Matrix::set(int i, int j, int x){
     i=i%n;
     j=j%p;
+    if(j<0)
+        j+=p;
+    if(i<0)
+        i+=n;
     tab[i+p*j]=x;
 }
 
 void Matrix::set_vector(int j, vector<int> X){
-    j=j%p;
     for(int i=0;i<n;i++)
         set(i,j,X[i]);
 }
 
 vector<int> Matrix::get_vector(int j){
     vector<int> X(n);
-    j=j%p;
     for(int i=0;i<n;i++)
         X[i]=get(i,j);
     return X;
 }
-
 
 vector<int> Matrix::swap(int i){
     vector<int> X(n);
