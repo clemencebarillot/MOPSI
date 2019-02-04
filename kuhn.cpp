@@ -31,12 +31,10 @@ void next(Matrix& M,int i){ //C'est avancer, on modifie la bonne colonne, et on 
     M.set_vector(i,X);
     M.last_modified=i;
     if(i==0){
-        cout<<"i="<<i<<endl;
         left(M);
         M.last_modified=p-1;
     }
     else if(i==p-1){ //Faire attention quand on commencera dans la dimension 1 (avec le else)
-        cout<<"i="<<i<<endl;
         right(M);
         M.last_modified=0;
     }
@@ -145,7 +143,7 @@ int findNext(Matrix& M,vector<int> labels){
 //Si on a un nombre négatif on supprime cette colonne
 //La ligne a sup est celle ou il n'y a que des 0 (après avoir sup la colonne)
 
-Matrix decreaseDim(Matrix& simplex){
+Matrix decreaseDim(Matrix simplex){
     int n, p, j0;
     j0 = simplex.last_modified;
     simplex.get_dim(n,p);

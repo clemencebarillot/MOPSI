@@ -20,18 +20,11 @@ int main()
     Matrix D;
     D=increase_dim(S);
     D.display();
-    D=decreaseDim(D);
-    D.display();
-    D=increase_dim(D);
-    D.display();
 //    sameDim(D,value_function,mod);
 //    Matrix F=decreaseDim(D);
 //    F.display();
 
-//    EF2(S,value_function); //Ca marche po
-
-
-
+    EF2(D,value_function); //Ca marche po
 
     return 0;
     

@@ -19,19 +19,24 @@ int sameDim(Matrix& D,map<int,int> value_function,int& mod){ //mod c'est la colo
         if(sideReached(D)) return 1;
         cout<<"fin"<<endl;
         cout<<"//==========="<<endl;
-        return 0;
     }
+    return 0;
 }
 void EF2(Matrix& D,map<int,int> value_function){
-    int mod=1;
+    int mod=0;
     int test=0; //prend 0 Si fully labelled dans la dimension actuelle, 1 si on a atteind le bord et qu'il faut diminuer d'une dimension
     while(mod<nb_player){
         test=sameDim(D,value_function,mod);
+
         D.display();
         cout<<test<<" "<<mod<<endl;
         if(test){
+            D.display();
+            cout<<"Decrease Dim=================="<<endl;
             D=decreaseDim(D);}
         else{
+            D.display();
+            cout<<"Increase Dim=================="<<endl;
             D=increase_dim(D);}
     }
 }
