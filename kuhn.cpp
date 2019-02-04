@@ -22,7 +22,7 @@ void right(Matrix& M){
     M.set_vector(0,X);
 }
 
-void next(Matrix& M,int i){
+void next(Matrix& M,int i){ //C'est avancer, on modifie la bonne colonne, et on fait les inversions nécessaires vues avec Fred
     int n,p;
     M.get_dim(n,p);
     vector<int> X(n);
@@ -49,7 +49,7 @@ void next(Matrix& M,int i){
 
 //int findLabel(Matrix, fonction labbel, tableau des labels (memoisation))
 
-Matrix increase_dim(Matrix M){
+Matrix increase_dim(Matrix M){ //Renvoie la matrice augmentée, et c'est suremenent un pb, faudrait olutot modifier M
     int n,p;
     M.get_dim(n,p);
     vector<int> max=M.get_vector(0); //On choisit toujours la dernière colonne
@@ -122,7 +122,7 @@ vector<int> findLabel(Matrix& M, map<int,int> value_function){
                 k=j;
                 max=memory.get(j,i);
             }
-        cout<<k<<" " ;
+        cout<<k<<" " ; //Ce cout
         Label.push_back(k);
     }
     cout<<endl;
@@ -145,7 +145,7 @@ int findNext(Matrix& M,vector<int> labels){
 //Si on a un nombre négatif on supprime cette colonne
 //La ligne a sup est celle ou il n'y a que des 0 (après avoir sup la colonne)
 
-Matrix decreaseDim(Matrix simplex){
+Matrix decreaseDim(Matrix& simplex){
     int n, p, j0;
     j0 = simplex.last_modified;
     simplex.get_dim(n,p);

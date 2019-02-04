@@ -16,13 +16,20 @@ int main()
     vector<int> labels=findLabel(S,value_function);
     mod=findNext(S,labels);
     cout<<mod<<endl;
-    Matrix D=increase_dim(S);
+    cout<<"début"<<endl;
+    Matrix D;
+    D=increase_dim(S);
     D.display();
-    sameDim(D,value_function,mod);
+    D=decreaseDim(D);
+    D.display();
+    D=increase_dim(D);
+    D.display();
+//    sameDim(D,value_function,mod);
 //    Matrix F=decreaseDim(D);
 //    F.display();
 
-    //EF2(S,value_function); //Ca marche po
+//    EF2(S,value_function); //Ca marche po
+
 
 
 

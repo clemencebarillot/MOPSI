@@ -48,3 +48,15 @@ vector<int> Matrix::swap(int i){
         X[k]=get_vector(i-1)[k]+get_vector(i+1)[k]-get_vector(i)[k];
     return X;
 }
+
+void Matrix::operator =(Matrix B){
+    B.get_dim(n,p);
+    tab=new int[n*p];
+    for(int i=0;i<n*p;i++)
+        tab[i]=B.tab[i];
+    last_modified=B.last_modified;
+    isFullyLabelled=B.isFullyLabelled;
+    last_labels.clear();
+    for(int i=0;i<B.last_labels.size();i++)
+        last_labels.push_back(B.last_labels[i]);
+}
