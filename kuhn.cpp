@@ -30,12 +30,12 @@ void next(Matrix& M,int i){
         X[k]=M.get_vector(i-1)[k]+M.get_vector(i+1)[k]-M.get_vector(i)[k];
     M.set_vector(i,X);
     M.last_modified=i;
-    if(i==0 && 1==1){
+    if(i==0){
         cout<<"i="<<i<<endl;
         left(M);
         M.last_modified=p-1;
     }
-    else if(i==p-1 && 1==1){ //Faire attention quand on commencera dans la dimension 1 (avec le else)
+    else if(i==p-1){ //Faire attention quand on commencera dans la dimension 1 (avec le else)
         cout<<"i="<<i<<endl;
         right(M);
         M.last_modified=0;
@@ -180,7 +180,6 @@ Matrix decreaseDim(Matrix simplex){
                 delta_n = 1;
             else delta_n = 0;
             Mp.set(i,j,simplex.get(i+delta_n, j+delta_p));
-
         }
     }
     Mp.last_modified = simplex.last_labels[simplex.last_labels.size()-1];
