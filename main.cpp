@@ -3,6 +3,8 @@
 #include "kuhn.h"
 #include "path.h"
 
+const int nb_perl=6;
+
 int main()
 {
     map<int,int> value_function;
@@ -11,7 +13,7 @@ int main()
 
     int mod=0;
     Matrix S(1,1);
-    S.set(0,0,5);
+    S.set(0,0,nb_perl);
     S.display();
     vector<int> labels=findLabel(S,value_function);
     mod=findNext(S,labels);
@@ -25,6 +27,10 @@ int main()
 //    F.display();
 
     EF2(D,value_function); //Ca marche po
+
+    cout<<"résultat final"<<endl;
+    D.display();
+    findLabel(D,value_function);
 
     return 0;
     

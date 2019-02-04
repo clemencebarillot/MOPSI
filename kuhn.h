@@ -9,7 +9,7 @@ void right(Matrix& M);
 void next(Matrix &M, int i);
 
 Matrix increase_dim(Matrix M);
-bool sideReached(Matrix simplex);
+bool sideReached(Matrix &simplex);
 Matrix decreaseDim(Matrix simplex);
 void next_step(Matrix& currentSimplex);
 void next(Matrix& M,int i);
