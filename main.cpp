@@ -35,5 +35,5 @@ int main()
     findLabel(D,value_function);
 
     return 0;
-    
+
 }
