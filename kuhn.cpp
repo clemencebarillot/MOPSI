@@ -71,7 +71,7 @@ Matrix increase_dim(Matrix M){ //Renvoie la matrice augmentée, et c'est suremen
 
 //bool sideReached(Matrix simplex) //renvoie true si on a atteint le bord du simplexe et qu'on doit descendre d'une dim
 //Vérifier si dans la nouvelle colonne s'il n'y a pas de -1.
-bool sideReached(Matrix simplex){
+bool sideReached(Matrix& simplex){
     bool test = false;
     int currentCol = simplex.last_modified;
     int n, p;
@@ -120,10 +120,10 @@ vector<int> findLabel(Matrix& M, map<int,int> value_function){
                 k=j;
                 max=memory.get(j,i);
             }
-        cout<<k<<" " ; //Ce cout
+        cout<<k<<" " ;
         Label.push_back(k);
     }
-    cout<<endl;
+    cout<<"  --> Les labels"<<endl;
     cout<<endl;
     cout<<"//=======End Label"<<endl;
     return Label;
