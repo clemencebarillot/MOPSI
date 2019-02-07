@@ -53,6 +53,7 @@ Matrix increase_dim(Matrix M){ //Renvoie la matrice augmentée, et c'est suremen
     vector<int> max=M.get_vector(0); //On choisit toujours la dernière colonne
     Matrix Mp(n+1,p+1);
     max[0]--; max[n]=1;
+
     for(int i=0;i<n+1;i++)
         for(int j=0;j<p+1;j++){
             if(j==p)
@@ -62,6 +63,7 @@ Matrix increase_dim(Matrix M){ //Renvoie la matrice augmentée, et c'est suremen
             else
                 Mp.set(i,j,M.get(i,j));
         }
+
     Mp.last_modified=p;
     Mp.last_labels=vector<int>(M.last_labels);
     Mp.last_labels.push_back(p);
@@ -144,6 +146,8 @@ int findNext(Matrix& M,vector<int> labels){
 //La ligne a sup est celle ou il n'y a que des 0 (après avoir sup la colonne)
 
 Matrix decreaseDim(Matrix simplex){
+    int iter=1;
+    while(iter<10000){iter++;}
     int n, p, j0;
     j0 = simplex.last_modified;
     simplex.get_dim(n,p);

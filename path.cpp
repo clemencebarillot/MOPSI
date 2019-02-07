@@ -1,13 +1,11 @@
 #include "path.h"
 
-const int nb_player=5;
+
 
 int sameDim(Matrix& D,map<int,int> value_function,int& mod){ //mod c'est la colonne à modifier, elle prend en sortie la valeur de la dimension+1
-    int iter=0;
     int n,p;
     D.get_dim(n,p);
-    while(mod != p && iter<50){
-        iter++;
+    while(mod != p){
         cout<<"//==========="<<endl;
         cout<<"debut boucle"<<endl;
         D.display();
@@ -18,7 +16,7 @@ int sameDim(Matrix& D,map<int,int> value_function,int& mod){ //mod c'est la colo
             next(D,mod);
             D.display();}
         if(sideReached(D)) return 1;
-        cout<<"fin"<<endl;
+        cout<<"fin boucle"<<endl;
         cout<<"//==========="<<endl;
     }
     return 0;
@@ -30,15 +28,15 @@ void EF2(Matrix& D,map<int,int> value_function){
         test=sameDim(D,value_function,mod);
 
         D.display();
-        cout<<test<<" "<<mod<<endl;
+        cout<<"test="<<test<<" mod="<<mod<<endl;
         if(test){
             cout<<"Decrease Dim=================="<<endl;
             D=decreaseDim(D);}
         else{
             if(mod<nb_player){
-            D.display();
-            cout<<"Increase Dim=================="<<endl;
-            D=increase_dim(D);}
+                D.display();
+                cout<<"Increase Dim=================="<<endl;
+                D=increase_dim(D);}
             else
                 mod++;
         }

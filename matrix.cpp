@@ -17,7 +17,7 @@ int Matrix::get(int i,int j){
         j+=p;
     if(i<0)
         i+=n;
-    return tab[i+p*j];
+    return tab[i][j];
 }
 
 void Matrix::set(int i, int j, int x){
@@ -27,7 +27,7 @@ void Matrix::set(int i, int j, int x){
         j+=p;
     if(i<0)
         i+=n;
-    tab[i+p*j]=x;
+    tab[i][j]=x;
 }
 
 void Matrix::set_vector(int j, vector<int> X){
@@ -51,9 +51,10 @@ vector<int> Matrix::swap(int i){
 
 void Matrix::operator =(Matrix B){
     B.get_dim(n,p);
-    tab=new int[n*p];
-    for(int i=0;i<n*p;i++)
-        tab[i]=B.tab[i];
+    tab=B.tab;
+//    for(int i=0;i<n;i++) tab[i].resize(p);
+//    for(int i=0;i<n*p;i++)
+//        tab[i]=B.tab[i];
     last_modified=B.last_modified;
     isFullyLabelled=B.isFullyLabelled;
     last_labels.clear();

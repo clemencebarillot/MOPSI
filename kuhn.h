@@ -4,6 +4,9 @@
 #include <map>
 #include "matrix.h"
 
+const int nb_perl=100;
+const int nb_player=7;
+
 void left(Matrix &M);
 void right(Matrix& M);
 void next(Matrix &M, int i);
