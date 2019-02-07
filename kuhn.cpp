@@ -93,15 +93,14 @@ vector<int> findLabel(Matrix& M, map<int,int> value_function){
     cout<<"//=======Label"<<endl;
     int n,p;
     M.get_dim(n,p);
-    Matrix memory(n,p);
-    for(int part=0;part<n;part++){
+    Matrix memory(n,p); //matrice qui donne a chaque partage son label??
+    for(int part=0;part<n;part++){ // part correcpond à un partage du simplexe
         vector<int> column=M.get_vector(part);
         vector<int> values;
-        int temp=0;
-        int value=0;
-        int start=0;
+        int temp=0, value=0, start=0;
+
         for(int i=0;i<column.size();i++){
-            temp=column.at(i); //Le nombre de perles
+            temp=column.at(i); //Le nombre de perles dans la part
             value=0;
             for(int j=0;j<temp;j++)
                 value+=value_function[start+j]; //Le start pour prendre en compte le nombre de perles d'avant
@@ -110,6 +109,7 @@ vector<int> findLabel(Matrix& M, map<int,int> value_function){
         }
         memory.set_vector(part,values);
     }
+
     memory.display();
     vector<int> Label;
     for(int i=0;i<p;i++){
