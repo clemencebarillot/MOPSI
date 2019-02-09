@@ -4,8 +4,6 @@
 #include <map>
 #include "matrix.h"
 
-const int nb_perl=1000;
-const int nb_player=10;
 
 void left(Matrix &M);
 void right(Matrix& M);
@@ -17,7 +15,7 @@ void decreaseDim(Matrix& simplex);
 void next_step(Matrix& currentSimplex);
 void next(Matrix& M,int i);
 
-vector<int> findLabel(Matrix &Label, map<int,int> value_function);
+vector<int> findLabel(Matrix &Label, map<int,int> value_function, bool display=false);
 
 int findNext(Matrix &M, vector<int> labels);
 

@@ -2,14 +2,17 @@
 #include "matrix.h"
 #include "kuhn.h"
 #include "path.h"
+#include "data.h"
 
 #include "time.h"
 
 int main()
 {
     map<int,int> value_function;
-    for(int i=0;i<nb_perl;i++)
-        value_function[i]=i+1;
+    int nb_player, nb_perl;
+    read_file("FirstValueFunction.txt",value_function,nb_player,nb_perl);
+    for(int i=0;i<value_function.size();i++)
+        cout<<"i="<<i<<" et sa valeur vaut "<<value_function[i]<<"_end"<<endl;
 
     int mod=0;
 
@@ -31,13 +34,15 @@ int main()
     D.display();
 
     clock_t t1=clock();
-    EF2(D,value_function);
+
+    EF2(D,value_function,nb_perl,nb_player);
     clock_t t2=clock();
     cout<<"temps d'exécution: "<<(t2-t1)/CLOCKS_PER_SEC<<" secondes."<<endl;
 
     cout<<"résultat final"<<endl;
     D.display();
-    findLabel(D,value_function);
+    findLabel(D,value_function,true);
+
 
     return 0;
 }

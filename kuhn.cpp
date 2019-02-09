@@ -79,7 +79,7 @@ bool sideReached(Matrix& simplex){
     return test;
 }
 
-vector<int> findLabel(Matrix& M, map<int,int> value_function){
+vector<int> findLabel(Matrix& M, map<int,int> value_function,bool display){
     /*
      Actuellement tous les joueurs ont la même fonction de labeling, donc au lieu d'avoir un vecteur de taille n, on a un vecteur de taille 1
      associé au label du découpage
@@ -106,7 +106,7 @@ vector<int> findLabel(Matrix& M, map<int,int> value_function){
         memory.set_vector(part,values);
     }
 
-//    memory.display();
+    if(display) memory.display();
     vector<int> Label;
     for(int i=0;i<p;i++){
         int k=0;

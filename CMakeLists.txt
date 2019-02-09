@@ -5,6 +5,6 @@ list(APPEND CMAKE_SYSTEM_FRAMEWORK_PATH /Library/Frameworks) #Mac, why not auto?
 find_package(Imagine REQUIRED)
 
 project(MOPSI)
-add_executable(MOPSI main.cpp matrix.h matrix.cpp kuhn.cpp kuhn.h path.cpp path.h)
+add_executable(MOPSI main.cpp matrix.h matrix.cpp kuhn.cpp kuhn.h path.cpp path.h data.cpp data.h)
 ImagineUseModules(MOPSI Graphics)
 

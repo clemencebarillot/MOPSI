@@ -22,7 +22,7 @@ int sameDim(Matrix& D,map<int,int> value_function,int& mod){ //mod c'est la colo
     }
     return 0;
 }
-void EF2(Matrix& D,map<int,int> value_function){
+void EF2(Matrix& D,map<int,int> value_function,int nb_perl,int nb_player){
     int mod=0;
     int test=0; //prend 0 Si fully labelled dans la dimension actuelle, 1 si on a atteind le bord et qu'il faut diminuer d'une dimension
     while(mod<=nb_player){
