@@ -30,12 +30,11 @@ int main()
     decreaseDim(D);
     D.display();
 
-      EF2(D,value_function);
+    EF2(D,value_function);
 
     cout<<"résultat final"<<endl;
-    D.display();
-    findLabel(D,value_function);
+//    D.display();
+//    findLabel(D,value_function);
 
     return 0;
-
 }

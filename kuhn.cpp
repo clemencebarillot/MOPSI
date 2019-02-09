@@ -40,12 +40,6 @@ void next(Matrix& M,int i){ //C'est avancer, on modifie la bonne colonne, et on 
     }
 }
 
-//int findLabel(Matrix Label;map)
-
-
-//bool isFullyLabelled;
-
-//int findLabel(Matrix, fonction labbel, tableau des labels (memoisation))
 
 void increase_dim(Matrix& M){ //Renvoie la matrice augmentée, et c'est suremenent un pb, faudrait olutot modifier M
     int n,p;

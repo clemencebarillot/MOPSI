@@ -4,7 +4,7 @@
 #include <map>
 #include "matrix.h"
 
-const int nb_perl=100;
+const int nb_perl=900;
 const int nb_player=10;
 
 void left(Matrix &M);
