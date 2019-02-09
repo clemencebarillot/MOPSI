@@ -44,25 +44,24 @@ void next(Matrix& M,int i){ //C'est avancer, on modifie la bonne colonne, et on 
 void increase_dim(Matrix& M){ //Renvoie la matrice augmentée, et c'est suremenent un pb, faudrait olutot modifier M
     int n,p;
     M.get_dim(n,p);
-    vector<int> max=M.get_vector(0); //On choisit toujours la dernière colonne
+    vector<int> new_column(n);
+    new_column=M.get_vector(0);
     Matrix Mp(n+1,p+1);
-    max[0]--; max[n]=1;
-
+    new_column[0]--; new_column.push_back(1);
     for(int i=0;i<n+1;i++)
         for(int j=0;j<p+1;j++){
             if(j==p)
-                Mp.set(i,j,max[i]);
+                Mp.set(i,j,new_column[i]);
             else if(j!=p && i==n)
                 Mp.set(i,j,0);
             else
                 Mp.set(i,j,M.get(i,j));
         }
-
     Mp.last_modified=p;
     Mp.last_labels=vector<int>(M.last_labels);
     Mp.last_labels.push_back(p);
     M=Mp;
-    cout<<"fin increase dim"<<endl;
+//    cout<<"fin increase dim"<<endl;
 }
 
 
@@ -87,7 +86,7 @@ vector<int> findLabel(Matrix& M, map<int,int> value_function){
      Le nombre correspond à la part préférée dans ce découpage
      (on peut faire le lien avec le fait que l'on veut des découpages où la part préférée est différente sur chaque angle du mini simplexe)
     */
-    cout<<"//=======Label"<<endl;
+//    cout<<"//=======Label"<<endl;
     int n,p;
     M.get_dim(n,p);
     Matrix memory(n,p); //matrice qui donne a chaque partage son label??
@@ -107,7 +106,7 @@ vector<int> findLabel(Matrix& M, map<int,int> value_function){
         memory.set_vector(part,values);
     }
 
-    memory.display();
+//    memory.display();
     vector<int> Label;
     for(int i=0;i<p;i++){
         int k=0;
@@ -117,12 +116,10 @@ vector<int> findLabel(Matrix& M, map<int,int> value_function){
                 k=j;
                 max=memory.get(j,i);
             }
-        cout<<k<<" " ;
+
         Label.push_back(k);
     }
-    cout<<"  --> Les labels"<<endl;
-    cout<<endl;
-    cout<<"//=======End Label"<<endl;
+//    cout<<"//=======End Label"<<endl;
     return Label;
 }
 
@@ -133,6 +130,9 @@ int findNext(Matrix& M,vector<int> labels){
     for(int i=0;i<p;i++)
         if(i!=M.last_modified && label==labels[i])
             return i;
+    for(int i=0;i<p;i++)
+        cout<<labels[i]<<" ";
+    cout<<endl;
     return p; //On est en fully labelled
 }
 
@@ -141,8 +141,6 @@ int findNext(Matrix& M,vector<int> labels){
 //La ligne a sup est celle ou il n'y a que des 0 (après avoir sup la colonne)
 
 void decreaseDim(Matrix &simplex){
-    int iter=1;
-    while(iter<10000){iter++;}
     int n, p, j0;
     j0 = simplex.last_modified;
     simplex.get_dim(n,p);
@@ -183,7 +181,6 @@ void decreaseDim(Matrix &simplex){
     simplex.last_labels.pop_back();
     Mp.last_labels = vector<int>(simplex.last_labels);
     simplex=Mp;
-//    delete& Mp;
 }
 
 //void next_step(Matrix& currentSimplex); // modifie la matrice en argument

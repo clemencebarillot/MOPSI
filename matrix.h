@@ -12,19 +12,20 @@ using namespace std;
 
 
 class Matrix{
-protected:
     int n,p;
     vector<vector<int>> tab;
 public:
     int last_modified;
     bool isFullyLabelled;
     vector<int> last_labels; //Ce vecteur garde en mémoire les vecteurs de la colonne qui était le last_modified avant d'augmenter de dimension
-    Matrix(int n_,int p_){n=n_;p=p_;last_modified=p_-1;tab = vector<vector<int>>(n); for(int i=0;i<n;i++) tab[i].resize(p);}
-//    Matrix(int n_,int p_,int* tab_){p=p_;n=n_;tab=new int[n_*p_];
-//                                    for(int i=0;i<n_*p_;i++)
-//                                        tab[i]=tab_[i];last_modified=p_-1;}
-    Matrix(){}
-//    ~Matrix(){cout<<"destructeur"<<endl;}
+
+    Matrix(int n_,int p_){n=n_;p=p_;
+                          last_modified=p_-1;
+                          tab = vector<vector<int>>(n);
+                          for(int i=0;i<n;i++)
+                              tab[i].resize(p);}
+    Matrix(){n=1;p=1;last_modified=p-1;tab = vector<vector<int>>(n); for(int i=0;i<n;i++) tab[i].resize(p);}
+    ~Matrix(){}
     void get_dim(int& a,int& b){a=n;b=p;}
     int get(int i, int j);
     vector<int> get_vector(int j);

@@ -51,15 +51,19 @@ vector<int> Matrix::swap(int i){
 
 void Matrix::operator =(Matrix B){
     B.get_dim(n,p);
-    tab.clear();
-    tab.resize(B.tab.size());
-    for(int i=0;i<n;i++)
-        for(int j=0;j<p;j++)
-            tab[i].push_back(B.tab[i][j]);
 
+    tab.clear();
+    for(int i=0;i<n;i++){
+        vector<int> temp;
+        for(int j=0;j<p;j++){
+            temp.push_back(B.tab[i][j]);
+        }
+        tab.push_back(temp);
+    }
     last_modified=B.last_modified;
     isFullyLabelled=B.isFullyLabelled;
     last_labels.clear();
     for(int i=0;i<B.last_labels.size();i++)
         last_labels.push_back(B.last_labels[i]);
+//    cout<<&this->tab<<" et "<<&B.tab<<endl;
 }
