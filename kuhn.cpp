@@ -47,7 +47,7 @@ void next(Matrix& M,int i){ //C'est avancer, on modifie la bonne colonne, et on 
 
 //int findLabel(Matrix, fonction labbel, tableau des labels (memoisation))
 
-Matrix increase_dim(Matrix M){ //Renvoie la matrice augmentée, et c'est suremenent un pb, faudrait olutot modifier M
+void increase_dim(Matrix& M){ //Renvoie la matrice augmentée, et c'est suremenent un pb, faudrait olutot modifier M
     int n,p;
     M.get_dim(n,p);
     vector<int> max=M.get_vector(0); //On choisit toujours la dernière colonne
@@ -67,7 +67,8 @@ Matrix increase_dim(Matrix M){ //Renvoie la matrice augmentée, et c'est suremen
     Mp.last_modified=p;
     Mp.last_labels=vector<int>(M.last_labels);
     Mp.last_labels.push_back(p);
-    return(Mp);
+    M=Mp;
+    cout<<"fin increase dim"<<endl;
 }
 
 
@@ -145,7 +146,7 @@ int findNext(Matrix& M,vector<int> labels){
 //Si on a un nombre négatif on supprime cette colonne
 //La ligne a sup est celle ou il n'y a que des 0 (après avoir sup la colonne)
 
-Matrix decreaseDim(Matrix simplex){
+void decreaseDim(Matrix &simplex){
     int iter=1;
     while(iter<10000){iter++;}
     int n, p, j0;
@@ -187,7 +188,8 @@ Matrix decreaseDim(Matrix simplex){
     Mp.last_modified = simplex.last_labels[simplex.last_labels.size()-1];
     simplex.last_labels.pop_back();
     Mp.last_labels = vector<int>(simplex.last_labels);
-    return(Mp);
+    simplex=Mp;
+//    delete& Mp;
 }
 
 //void next_step(Matrix& currentSimplex); // modifie la matrice en argument

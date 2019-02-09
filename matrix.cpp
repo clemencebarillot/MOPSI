@@ -51,10 +51,12 @@ vector<int> Matrix::swap(int i){
 
 void Matrix::operator =(Matrix B){
     B.get_dim(n,p);
-    tab=B.tab;
-//    for(int i=0;i<n;i++) tab[i].resize(p);
-//    for(int i=0;i<n*p;i++)
-//        tab[i]=B.tab[i];
+    tab.clear();
+    tab.resize(B.tab.size());
+    for(int i=0;i<n;i++)
+        for(int j=0;j<p;j++)
+            tab[i].push_back(B.tab[i][j]);
+
     last_modified=B.last_modified;
     isFullyLabelled=B.isFullyLabelled;
     last_labels.clear();

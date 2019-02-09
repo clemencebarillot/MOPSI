@@ -31,12 +31,12 @@ void EF2(Matrix& D,map<int,int> value_function){
         cout<<"test="<<test<<" mod="<<mod<<endl;
         if(test){
             cout<<"Decrease Dim=================="<<endl;
-            D=decreaseDim(D);}
+            decreaseDim(D);}
         else{
             if(mod<nb_player){
                 D.display();
                 cout<<"Increase Dim=================="<<endl;
-                D=increase_dim(D);}
+                increase_dim(D);}
             else
                 mod++;
         }

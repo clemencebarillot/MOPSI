@@ -24,7 +24,7 @@ public:
 //                                    for(int i=0;i<n_*p_;i++)
 //                                        tab[i]=tab_[i];last_modified=p_-1;}
     Matrix(){}
-    ~Matrix(){tab.clear();}
+//    ~Matrix(){cout<<"destructeur"<<endl;}
     void get_dim(int& a,int& b){a=n;b=p;}
     int get(int i, int j);
     vector<int> get_vector(int j);

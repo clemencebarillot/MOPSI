@@ -5,15 +5,15 @@
 #include "matrix.h"
 
 const int nb_perl=100;
-const int nb_player=7;
+const int nb_player=10;
 
 void left(Matrix &M);
 void right(Matrix& M);
 void next(Matrix &M, int i);
 
-Matrix increase_dim(Matrix M);
+void increase_dim(Matrix &M);
 bool sideReached(Matrix &simplex);
-Matrix decreaseDim(Matrix simplex);
+void decreaseDim(Matrix& simplex);
 void next_step(Matrix& currentSimplex);
 void next(Matrix& M,int i);
 

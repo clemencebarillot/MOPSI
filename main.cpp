@@ -8,7 +8,7 @@
 int main()
 {
     map<int,int> value_function;
-    for(int i=0;i<5;i++)
+    for(int i=0;i<nb_perl;i++)
         value_function[i]=nb_perl-i+1;
 
     int mod=0;
@@ -21,12 +21,14 @@ int main()
     mod=findNext(S,labels);
     cout<<mod<<endl;
     cout<<"début"<<endl;
-    Matrix D;
-    D=increase_dim(S);
+    Matrix D;   
+    increase_dim(S);
+    D=S;
+
     D.display();
     sameDim(D,value_function,mod);
-    Matrix F=decreaseDim(D);
-    F.display();
+    decreaseDim(D);
+    D.display();
 
       EF2(D,value_function);
 
