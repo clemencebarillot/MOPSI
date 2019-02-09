@@ -43,6 +43,8 @@ int main()
     D.display();
     findLabel(D,value_function,true);
 
+    write_data("FirstValueFunctionResults.txt",D);
+
 
     return 0;
 }

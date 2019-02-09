@@ -1,3 +1,4 @@
+#include "matrix.h"
 #include "data.h"
 
 void read_file(string path, map<int, int> &value_function,int& nb_player,int& nb_perl){
@@ -22,10 +23,23 @@ void read_file(string path, map<int, int> &value_function,int& nb_player,int& nb
             value_function[perl]=stoi(digit);
             perl++;
         }
-
         file.close();}
     else
         cerr << "File cannot be opened" << endl;
+}
 
+void write_data(string path,Matrix M){
+    ofstream file(path, ios::trunc);
+    if(file){
+        int n,p;
+        M.get_dim(n,p);
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<p;j++){
+                file << M.get(i,j) << " ";
+            }
+            file << endl;
+        }
+    }
 
 }
