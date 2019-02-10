@@ -63,8 +63,10 @@ int value_part(map<int,int> value_function, vector<int> part){ //pour des value 
     int res = 0;
     if (part.size() ==0)
         return res;
-    for (int i=0; i<part.size(); i++)
+    for (int i=0; i<part.size(); i++){
         res+= value_function[part[i]];
+        //cout<<"valeur de la perle  "<<part[i]<< ": "<< value_function[part[i]] <<endl;
+    }
     return res;
 }
 
@@ -77,6 +79,24 @@ int max_vect(vector<int> vect){ // attention le vecteur doit etre non nul
     return res;
 }
 
+void affiche_matrice(vector<vector<int>> mat){
+    int n=mat.size(); //nb ligne
+    int m = mat[0].size(); //nb col
+    for(int i =0; i<n; i++){
+        for(int j=0; j<m; j++){
+            cout<<mat[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
+void affiche_vecteur(vector<int> vect){
+    if(vect.size()==0)
+        cout<<" vect vide";
+    for(int j=0; j<vect.size(); j++){
+        cout<<vect[j]<<" ";}
+    cout<<endl;
+}
+
 bool EF1(vector<vector<int>> Ef2, map<int,int> value_function, vector<vector<int>> Ef1){
     vector<vector<vector<int>>> parts; // la premiere ligne est le Ef2, la deuxieme la premiere perle de chaque ef2, la toiriseme la derniere (si differente de la premiere); la derniere l'ef2 privé de premiere et derniere
     parts.push_back(Ef2);
@@ -87,7 +107,6 @@ bool EF1(vector<vector<int>> Ef2, map<int,int> value_function, vector<vector<int
     vector<vector<int>> line2;
     vector<vector<int>> line3;
 
-    cout<<"ilitialisation ok" <<endl;
 
     for (int i=0; i<n; i++){
         vector<int> xf;
@@ -105,20 +124,18 @@ bool EF1(vector<vector<int>> Ef2, map<int,int> value_function, vector<vector<int
 
         vector<int> xj;
         if(Ef2[i].size()>2){
-
-            vector<int>::const_iterator first = Ef2[i].begin() + 1;
-            vector<int>::const_iterator last = Ef2[i].end() -1;
-            vector<int> xj(first, last);
-            //vector<int> xj = Ef2[i][1::Ef2[i].size() -1];
+            for (int k=1; k<Ef2[i].size()-1; k++){
+                xj.push_back(Ef2[i][k]);
+            }
         }
 
-        //cout<<"xj1 "<<xj[0]<<" taille de la part "<<Ef2[i].size()<<endl;
 
         line1.push_back(x0);
         line2.push_back(xf);
         line3.push_back(xj);
 
     }
+
     parts.push_back(line1);
     parts.push_back(line2);
     parts.push_back(line3);
@@ -127,7 +144,7 @@ bool EF1(vector<vector<int>> Ef2, map<int,int> value_function, vector<vector<int
 
       vector<int> value_inner_parts; // vect contenant la valeur des parts sans compter les extremités
       for(int i=0; i<n ; i++){ // on balaie les differentes parts
-          value_inner_parts.push_back( value_part(value_function, parts[0][i]) );
+          value_inner_parts.push_back( value_part(value_function, parts[3][i]) );
       }
 
     vector<int> line_value1;
@@ -136,8 +153,7 @@ bool EF1(vector<vector<int>> Ef2, map<int,int> value_function, vector<vector<int
 
 
     for(int i=0; i<n; i++){// ligne des ef2
-        int value = value_inner_parts[i];
-        value+=value_part(value_function,parts[1][i]) + value_part(value_function,parts[2][i]);
+        int value = value_inner_parts[i] + value_part(value_function,parts[1][i]) + value_part(value_function,parts[2][i]);
         line_value1.push_back(value);
     }
 
