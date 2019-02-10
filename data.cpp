@@ -2,27 +2,32 @@
 #include "data.h"
 #include "random"
 
-void read_file(string path, map<int, int> &value_function,int& nb_player,int& nb_perl){
+void read_file(string path, map<int, map<int,int>> &Value_Functions,int& nb_player,int& nb_perl,bool& sameValueFunction){
     ifstream file(path, ios::in);
     if(file){
         string values;
-        file >> nb_player >> nb_perl;
+        file >> nb_player >> nb_perl >> sameValueFunction;
         getline(file,values);
-        getline(file,values);
-//        cout<< nb_player << "_" << nb_perl << "_end" << endl;
-//        cout<<values<<"_end"<<endl;
-        int perl=0;
-        values=values+" "; //Pour comparer avec le digit i+1
-        for(int i=0;i<values.size()-1;i++){ //On enlève 1 car on a rajouté un charactère
-            string digit=string(1,values[i]);
-            string next_digit=string(1,values[i+1]);
-            while(next_digit.compare(" ") != 0 && next_digit.compare("  ") != 0 ){
-                digit+=next_digit;
-                i++;
-                next_digit=string(1,values[i+1]);
+        for(int k=0;k<nb_player;k++){
+
+            map<int, int> value_function=Value_Functions[k];
+            if(sameValueFunction!=1 || k==0)
+                getline(file,values);
+            cout<< nb_player << "_" << nb_perl << "_end" << endl;
+            cout<<values<<"_end"<<endl;
+            int perl=0;
+            for(int i=0;i<values.size();i++){
+                string digit=string(1,values[i]);
+                string next_digit=string(1,values[i+1]);
+                while(next_digit.compare(" ") != 0 && next_digit.compare("  ") != 0 ){
+                    digit+=next_digit;
+                    i++;
+                    next_digit=string(1,values[i+1]);
+                }
+                value_function[perl]=stoi(digit);
+                perl++;
             }
-            value_function[perl]=stoi(digit);
-            perl++;
+            Value_Functions[k]=value_function;
         }
         file.close();}
     else
@@ -43,15 +48,27 @@ void write_data(string path,vector<vector<int>> Ef2){
     else cerr<<"Cannot create result file"<<endl;
 }
 
-void create_data(string path, int nb_player, int nb_perl, int max){
+void create_data(string path, int nb_player, int nb_perl, int max, bool sameValueFunction){
     ofstream file(path, ios::trunc);
     if(file){
         file<<nb_player<<endl;
         file<<nb_perl<<endl;
-        for(int i=0;i<nb_perl;i++){
-            file<< rand()%max;
-            if(i<nb_perl-1)
-                file<<" ";
+        file<<sameValueFunction<<endl;
+        if(sameValueFunction)
+        {
+            for(int i=0;i<nb_perl;i++){
+                file<< rand()%max;
+                if(i<nb_perl-1)
+                    file<<" ";
+            }
+        }
+        else for(int k=0;k<nb_player;k++){
+            for(int i=0;i<nb_perl;i++){
+                file<< rand()%max;
+                if(i<nb_perl-1)
+                    file<<" ";
+            }
+            file <<endl;
         }
         file.close();
     }
