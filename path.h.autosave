@@ -8,6 +8,6 @@ int sameDim(Matrix& D, map<int,int> value_function, int &mod, vector<vector<int>
 
 vector<int> EF2(Matrix& D,map<int,int> value_function,int nb_perl,int nb_player,vector<vector<int>>& Ef2);
 
-vector<vector<int>> EF1(vector<vector<int>> Ef2, map<int,int> value_function);
+bool EF1(vector<vector<int>> Ef2, map<int,int> value_function, vector<vector<int> > Ef1);
 
 #endif // PATH_H
