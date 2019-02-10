@@ -9,15 +9,18 @@
 int main()
 {
     map<int,int> value_function;
-    int nb_player=20, nb_perl=200;
+    int nb_player=10, nb_perl=100;
     string path="TestRandom";
 
     vector<vector<int>> Ef2;
 
+    initiate_data_perl();
 
-
-    for(nb_perl=100;nb_perl<500;nb_perl+=100){
-
+    for(nb_perl=100;nb_perl<900;nb_perl+=10){
+        if(nb_perl>=300)
+            nb_perl+=10;
+        if(nb_perl>=600)
+            nb_perl+=30;
         Matrix S(1,1);
 
         create_data(path+".txt",nb_player,nb_perl,100);
