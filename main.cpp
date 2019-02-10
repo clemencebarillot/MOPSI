@@ -8,28 +8,46 @@
 
 int main()
 {
+
     map<int,int> value_function;
+<<<<<<< HEAD
     int nb_player=4, nb_perl=20;
+=======
+    map<int,map<int,int>> Value_Functions;
+
+    bool sameValueFunction=false;
+
+    int nb_player=3, nb_perl=5;
+>>>>>>> d0f6ed0983ed0156054851a79857f3f971d73698
     string path="TestRandom";
 
     vector<vector<int>> Ef2;
     vector<vector<int>> Ef1;
 
     initiate_data_perl();
+<<<<<<< HEAD
 /*
     for(nb_perl=100;nb_perl<900;nb_perl+=10){
         if(nb_perl>=300)
             nb_perl+=10;
         if(nb_perl>=600)
             nb_perl+=30;
+=======
+
+//    for(nb_perl=100;nb_perl<900;nb_perl+=10){
+//        if(nb_perl>=300)
+//            nb_perl+=10;
+//        if(nb_perl>=600)
+//            nb_perl+=30;
+>>>>>>> d0f6ed0983ed0156054851a79857f3f971d73698
         Matrix S(1,1);
 
-        create_data(path+".txt",nb_player,nb_perl,100);
-        read_file(path+".txt",value_function,nb_player,nb_perl);
+        create_data(path+".txt",nb_player,nb_perl,100,sameValueFunction);
+        read_file(path+".txt",Value_Functions,nb_player,nb_perl,sameValueFunction);
 
 
         clock_t t1=clock();
-        EF2(S,value_function,nb_perl,nb_player,Ef2);
+        EF2(S,Value_Functions,nb_perl,nb_player,Ef2);
         clock_t t2=clock();
         cout<<"Execution time: "<<(t2-t1)/CLOCKS_PER_SEC<<" seconds."<<endl;
 
@@ -37,6 +55,7 @@ int main()
         write_data(path+"Results"+".txt",Ef2);
 
         write_time(nb_perl,(t2-t1)/CLOCKS_PER_SEC);
+<<<<<<< HEAD
     }*/
     Matrix S(1,1);
 
@@ -64,6 +83,9 @@ int main()
     cout<<"calcul EF1 ";
 
     bool res = EF1(Ef2,value_function,Ef1);
+=======
+//    }
+>>>>>>> d0f6ed0983ed0156054851a79857f3f971d73698
 
     cout<<res<<endl;
     return 0;
