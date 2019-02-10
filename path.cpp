@@ -58,11 +58,5 @@ vector<int> EF2(Matrix& D,map<int,int> value_function,int nb_perl,int nb_player,
     cout<<"Ef2 is found, please have a look in the Result File."<<endl;
     return labels;
 }
-<<<<<<< HEAD
-
-bool EF1(vector<vector<int>> Ef2, map<int,int> value_function, vector<vector<int>> Ef1){
 
 
-}
-=======
->>>>>>> parent of 2dc9af6... Graphe perles
