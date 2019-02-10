@@ -10,21 +10,16 @@ int main()
 {
 
     map<int,int> value_function;
-<<<<<<< HEAD
-    map<int,map<int,int>> Value_Functions;
+//    map<int,map<int,int>> Value_Functions;
 
     bool sameValueFunction=false;
 
-    int nb_player=3, nb_perl=5;
-=======
     int nb_player=20, nb_perl=200;
->>>>>>> parent of 2dc9af6... Graphe perles
     string path="TestRandom";
 
     vector<vector<int>> Ef2;
     vector<vector<int>> Ef1;
 
-<<<<<<< HEAD
     initiate_data_perl();
 /*
     for(nb_perl=100;nb_perl<900;nb_perl+=10){
