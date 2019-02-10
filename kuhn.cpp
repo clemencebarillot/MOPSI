@@ -79,34 +79,87 @@ bool sideReached(Matrix& simplex){
     return test;
 }
 
-vector<int> findLabel(Matrix& M, map<int,int> value_function,bool display){
+vector<vector<vector<int>>> vector_to_parts(Matrix& M){
+    /*
+     Alors on va calculer les labels avec les demis :
+     **Avoir le graphe sous les yeux peut etre utile**
+     on compte la perle qui est supérieur au demi
+     donc si c'est un entier, c'est que le couteau est sur la perle donc on ne l'a pas.
+     donc avec un vecteur [3/2,2,3/2] ca veut dire qu'on a 5 perles
+     donc on a [3,4,3]
+     On fait x*2 par rapport au dessin p18 de la thèse !!!
+     Donc on commence à 1, si la première est paire on prend ce qu'il y a entre. Le fait que l'on commence à 1 n'est pas important car on ne considère que les longueurs nous.
+     Pas comme la thèse qui considère les coups de couteau.
+     la première part prend là première perle, la deuxième prend la 3 ème et la dernière prend la dernière. La 2 et 4  ne sont pas comptées.
+     */
+
+    //On veut renvoyer un tableau du type [ [ [1,2,3],[5,6],[8] ], [ [1,2,3],[4,5],[7,8] ], [ [1,2],[3,4],[6,7,8] ]
+    //c'est un part=vector<vector<vector<int>>>
+    //Il veut dire part[i] : c'est la ième colonne que l'on va décomposer en parts donc M.get_vector(i).
+    //Part[i][j] : correspond à la part de longueur M.get_vector(i)[j]
+    //part[i][j] est composé des perles qui sont effectivement dans la part
+    //Ainsi ensuite pour la fonction label il va suffire d'additionner la value function des perles qui sont dans chaque part et hop.
+
+    int n,p;
+    M.get_dim(n,p);
+    vector<vector<vector<int>>> results;
+    results.resize(p);
+    for(int i=0;i<n;i++)
+        results[i].resize(n);
+
+    for(int i=0;i<p;i++){
+        vector<int> column=M.get_vector(i);
+        int start=1; //Il va servir à définir le coup de couteau qui sert de départ. S'il est impair, on ne compte pas la perle.
+        int end=1; //Il va servir à définir le coup de couteau qui sert de fin. S'il est impair, on ne compte pas la perle.
+        int length; //Représente la longueur de chaque part.
+        for(int j=0;j<n;j++){
+            if(n!=column.size())
+                cerr<<"column size != n"<<endl;
+            length=column[j];
+            while(end-start<length){
+                end++;
+                if(end%2==1 && end>start+1){
+                    results[i][j].push_back((end-1)/2-1); //Le -1 pour commencer à la perle 0.
+                    //cout<<"colonne "<<i<<" ligne "<< j << " on push la perle " << end/2 -1 <<endl;
+                }
+            }
+            start=end;
+        }
+    }
+    return results;
+}
+
+
+
+
+vector<int> findLabel(Matrix& M, map<int,int> value_function, vector<vector<int>>& Ef2,bool EF2){
     /*
      Actuellement tous les joueurs ont la même fonction de labeling, donc au lieu d'avoir un vecteur de taille n, on a un vecteur de taille 1
      associé au label du découpage
      Le nombre correspond à la part préférée dans ce découpage
      (on peut faire le lien avec le fait que l'on veut des découpages où la part préférée est différente sur chaque angle du mini simplexe)
     */
+
 //    cout<<"//=======Label"<<endl;
+
+    vector<vector<vector<int>>> results=vector_to_parts(M);
+
     int n,p;
     M.get_dim(n,p);
-    Matrix memory(n,p); //matrice qui donne a chaque partage son label??
-    for(int part=0;part<n;part++){ // part correcpond à un partage du simplexe
-        vector<int> column=M.get_vector(part);
-        vector<int> values;
-        int temp=0, value=0, start=0;
+    Matrix memory(n,p); //matrice qui donne a chaque partage son label
+    for(int part=0;part<n;part++){ // part correspond à un partage du simplexe
+        vector<vector<int>> column=results[part];
 
-        for(int i=0;i<column.size();i++){
-            temp=column.at(i); //Le nombre de perles dans la part
-            value=0;
-            for(int j=0;j<temp;j++)
-                value+=value_function[start+j]; //Le start pour prendre en compte le nombre de perles d'avant
-            start+=temp;
+        vector<int> values;
+        for(int j=0;j<column.size();j++){
+            int value=0;
+            for(int k=0;k<column[j].size();k++)
+                value+=value_function[column[j][k]];
             values.push_back(value);
         }
         memory.set_vector(part,values);
     }
 
-    if(display) memory.display();
     vector<int> Label;
     for(int i=0;i<p;i++){
         int k=0;
@@ -119,6 +172,17 @@ vector<int> findLabel(Matrix& M, map<int,int> value_function,bool display){
 
         Label.push_back(k);
     }
+
+
+    if(EF2){
+        for(int i=0;i<p;i++){
+            Ef2.push_back(results[i][Label[i]]);
+            cout<<"The perl for the player "<<i<<" are ";
+            for(int j=0;j<Ef2[i].size();j++)
+                cout<<Ef2[i][j]<<" ";
+            cout<<endl;
+        }
+    }
 //    cout<<"//=======End Label"<<endl;
     return Label;
 }
@@ -130,9 +194,10 @@ int findNext(Matrix& M,vector<int> labels){
     for(int i=0;i<p;i++)
         if(i!=M.last_modified && label==labels[i])
             return i;
-    for(int i=0;i<p;i++)
-        cout<<labels[i]<<" ";
-    cout<<endl;
+//    cout<<"In this dimensions labels are ";
+//    for(int i=0;i<p;i++)
+//        cout<<labels[i]<<" ";
+//    cout<<endl;
     return p; //On est en fully labelled
 }
 
