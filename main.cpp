@@ -10,7 +10,10 @@ int main()
 {
     map<int,int> value_function;
     int nb_player, nb_perl;
-    read_file("FirstValueFunction.txt",value_function,nb_player,nb_perl);
+    string path="TestRandom";
+    create_data(path+".txt",10,200,100);
+
+    read_file(path+".txt",value_function,nb_player,nb_perl);
 
     Matrix S(1,1);
 
@@ -23,7 +26,8 @@ int main()
 
 
 
-    write_data("FirstValueFunctionResults.txt",S);
+    write_data(path+"Results"+".txt",Ef2);
+
 
 
     return 0;

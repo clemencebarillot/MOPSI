@@ -177,10 +177,6 @@ vector<int> findLabel(Matrix& M, map<int,int> value_function, vector<vector<int>
     if(EF2){
         for(int i=0;i<p;i++){
             Ef2.push_back(results[i][Label[i]]);
-            cout<<"The perl for the player "<<i<<" are ";
-            for(int j=0;j<Ef2[i].size();j++)
-                cout<<Ef2[i][j]<<" ";
-            cout<<endl;
         }
     }
 //    cout<<"//=======End Label"<<endl;

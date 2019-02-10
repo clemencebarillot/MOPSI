@@ -1,5 +1,6 @@
 #include "matrix.h"
 #include "data.h"
+#include "random"
 
 void read_file(string path, map<int, int> &value_function,int& nb_player,int& nb_perl){
     ifstream file(path, ios::in);
@@ -28,19 +29,18 @@ void read_file(string path, map<int, int> &value_function,int& nb_player,int& nb
         cerr << "File cannot be opened" << endl;
 }
 
-void write_data(string path,Matrix M){
+void write_data(string path,vector<vector<int>> Ef2){
     ofstream file(path, ios::trunc);
     if(file){
-        int n,p;
-        M.get_dim(n,p);
-        for(int i=0;i<n;i++)
-        {
-            for(int j=0;j<p;j++){
-                file << M.get(i,j) << " ";
-            }
-            file << endl;
+        for(int i=0;i<Ef2.size();i++){
+        file<<"The perl for the player "<<i<<" are ";
+        for(int j=0;j<Ef2[i].size();j++)
+            file<<Ef2[i][j]<<" ";
+        file<<endl;
         }
+        file.close();
     }
+    else cerr<<"Cannot create result file"<<endl;
 }
 
 void create_data(string path, int nb_player, int nb_perl, int max){
@@ -49,7 +49,11 @@ void create_data(string path, int nb_player, int nb_perl, int max){
         file<<nb_player<<endl;
         file<<nb_perl<<endl;
         for(int i=0;i<nb_perl;i++){
-
+            file<< rand()%max;
+            if(i<nb_perl-1)
+                file<<" ";
         }
+        file.close();
     }
+    else cerr<<"Cannot create data file"<<endl;
 }
