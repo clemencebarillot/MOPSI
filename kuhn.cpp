@@ -132,7 +132,7 @@ vector<vector<vector<int>>> vector_to_parts(Matrix& M){
 
 
 
-vector<int> findLabel(Matrix& M, map<int,int> value_function, vector<vector<int>>& Ef2,bool EF2){
+vector<int> findLabel(Matrix& M, map<int, map<int, int> > Value_Functions, vector<vector<int>>& Ef2, bool EF2){
     /*
      Actuellement tous les joueurs ont la même fonction de labeling, donc au lieu d'avoir un vecteur de taille n, on a un vecteur de taille 1
      associé au label du découpage
@@ -154,7 +154,7 @@ vector<int> findLabel(Matrix& M, map<int,int> value_function, vector<vector<int>
         for(int j=0;j<column.size();j++){
             int value=0;
             for(int k=0;k<column[j].size();k++)
-                value+=value_function[column[j][k]];
+                value+=Value_Functions[part][column[j][k]];
             values.push_back(value);
         }
         memory.set_vector(part,values);

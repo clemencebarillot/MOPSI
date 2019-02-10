@@ -16,7 +16,7 @@ void next_step(Matrix& currentSimplex);
 void next(Matrix& M,int i);
 
 vector<vector<vector<int>>> vector_to_parts(Matrix& M);
-vector<int> findLabel(Matrix &Label, map<int,int> value_function, vector<vector<int>> &Ef2, bool EF2=false);
+vector<int> findLabel(Matrix &Label, map<int,map<int,int>> Value_Functions, vector<vector<int>> &Ef2, bool EF2=false);
 
 int findNext(Matrix &M, vector<int> labels);
 
