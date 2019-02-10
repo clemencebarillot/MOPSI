@@ -58,6 +58,7 @@ vector<int> EF2(Matrix& D,map<int,map<int,int>> Value_Functions,int nb_perl,int 
     cout<<"Ef2 is found, please have a look in the Result File."<<endl;
     return labels;
 }
+<<<<<<< HEAD
 
 int value_part(map<int,int> value_function, vector<int> part){ //pour des value fonction identiques, renvoie la valeur de la part
     int res = 0;
@@ -198,3 +199,5 @@ bool EF1(vector<vector<int>> Ef2, map<int,int> value_function, vector<vector<int
 
 
 }
+=======
+>>>>>>> parent of 2dc9af6... Graphe perles
