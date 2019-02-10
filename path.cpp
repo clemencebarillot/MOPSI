@@ -38,7 +38,7 @@ vector<int> EF2(Matrix& D,map<int,int> value_function,int nb_perl,int nb_player,
     while(mod<=nb_player){
         test=sameDim(D,value_function,mod,Ef2);
         if(test){
-            cout<<"Decreasing to dimension"<<mod-1<<endl;
+            cout<<"Decreasing to dimension "<<mod-1<<endl;
             decreaseDim(D);}
         else{
             if(mod<nb_player){
@@ -49,12 +49,12 @@ vector<int> EF2(Matrix& D,map<int,int> value_function,int nb_perl,int nb_player,
         }
     }
     labels=findLabel(D,value_function,Ef2,true);
-    for(int i=0;i<Ef2.size();i++){
-    cout<<"The perl for the player "<<i<<" are ";
-    for(int j=0;j<Ef2[i].size();j++)
-        cout<<Ef2[i][j]<<" ";
-    cout<<endl;
-    }
-
+//    for(int i=0;i<Ef2.size();i++){
+//    cout<<"The perl for the player "<<i<<" are ";
+//    for(int j=0;j<Ef2[i].size();j++)
+//        cout<<Ef2[i][j]<<" ";
+//    cout<<endl;
+//    }
+    cout<<"Ef2 is found, please have a look in the Result File."<<endl;
     return labels;
 }

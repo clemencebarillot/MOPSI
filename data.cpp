@@ -57,3 +57,17 @@ void create_data(string path, int nb_player, int nb_perl, int max){
     }
     else cerr<<"Cannot create data file"<<endl;
 }
+
+void initiate_data_perl(){
+    ofstream file("Time in Function of perls.txt",ios::trunc);
+    if(file)
+        file.close();
+
+}
+
+void write_time(int nb_perl, int time){
+    ofstream file("Time in Function of perls.txt",ios::app);
+    if(file)
+        file<<nb_perl<<";"<<time<<endl;
+    file.close();
+}
