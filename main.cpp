@@ -9,9 +9,17 @@
 int main()
 {
     map<int,int> value_function;
+<<<<<<< HEAD
 
     int nb_player=20, nb_perl=200;
 
+=======
+//    map<int,map<int,int>> Value_Functions;
+
+    bool sameValueFunction=false;
+
+    int nb_player=20, nb_perl=200;
+>>>>>>> add500feaa8c8f97c287b3439cf809923832ac0f
     string path="TestRandom";
 
     vector<vector<int>> Ef2;
