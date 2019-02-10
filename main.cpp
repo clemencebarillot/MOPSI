@@ -9,7 +9,7 @@
 int main()
 {
     map<int,int> value_function;
-    int nb_player=3, nb_perl=10;
+    int nb_player=4, nb_perl=20;
     string path="TestRandom";
 
     vector<vector<int>> Ef2;
@@ -54,12 +54,12 @@ int main()
 
     write_time(nb_perl,(t2-t1)/CLOCKS_PER_SEC);
 
-    for(int i=0;i<Ef2.size();i++){
-        cout<<"The perl for the player "<<i<<" are ";
-        for(int j=0;j<Ef2[i].size();j++)
-            cout<<Ef2[i][j]<<" ";
-        cout<<endl;
-        }
+//    for(int i=0;i<Ef2.size();i++){
+//        cout<<"The perl for the player "<<i<<" are ";
+//        for(int j=0;j<Ef2[i].size();j++)
+//            cout<<Ef2[i][j]<<" ";
+//        cout<<endl;
+//        }
 
     cout<<"calcul EF1 ";
 
